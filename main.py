@@ -32,6 +32,7 @@ if option is None:
 
 
 config = get_config_from_file("connection-setup.txt")
+print(config)
 
 
 if option == "r":

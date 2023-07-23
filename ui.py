@@ -21,6 +21,9 @@ class App(ctk.CTk):
         self.hide_functions = (self.hide_main_menu, self.hide_new_transfer_menu,
                                self.hide_manage_devices_menu, self.hide_options_menu)
 
+        # Variables
+        self.devices = ["Dev-1", "Dev-2", "Dev-3"]
+
         # Columns
         self.grid_columnconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)
@@ -51,6 +54,9 @@ class App(ctk.CTk):
         # New Transfer Menu Widgets
 
         # Manage Devices Menu Widgets
+        self.scroll_frame_devices = ctk.CTkScrollableFrame(self, width=300,
+                                                           height=300, fg_color="#000000")
+
 
         # Options Menu Widgets
     
@@ -98,9 +104,15 @@ class App(ctk.CTk):
         self.hide_main_menu()
         self.screen = self.screens[2]
         self.title.configure(text="Manage Devices")
+        self.scroll_frame_devices.grid(row=1, column=0, columnspan=3, padx=15, pady=15)
         self.back.grid(row=4, column=1)
 
+        # Frame
+        for i, dev in enumerate(self.devices):
+            ctk.CTkLabel(self.scroll_frame_devices, text=dev).grid(row=i)
+
     def hide_manage_devices_menu(self):
+        self.scroll_frame_devices.grid_forget()
         self.back.grid_forget()
 
 
